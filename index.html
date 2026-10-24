@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تسميع بالألوان</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf7f2;--fg:#2b2622;--mut:#7a7068;--card:#fff;--bd:#e6dfd5;--acc:#8e24aa;--g1:rgba(142,36,170,.12);--g2:rgba(3,155,229,.12);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1917;--fg:#f3eee8;--mut:#a79d93;--card:#26231f;--bd:#3a352f;--acc:#ce93d8;--g1:rgba(206,147,216,.14);--g2:rgba(79,195,247,.1)}}
+:root[data-theme="dark"]{--bg:#1b1917;--fg:#f3eee8;--mut:#a79d93;--card:#26231f;--bd:#3a352f;--acc:#ce93d8;--g1:rgba(206,147,216,.14);--g2:rgba(79,195,247,.1)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{min-height:100%;background:var(--bg)}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 0,var(--g1),transparent 45%),radial-gradient(circle at 90% 20%,var(--g2),transparent 40%),var(--bg);color:var(--fg);font-family:'Tajawal',system-ui,sans-serif;padding:14px 16px 28px;max-width:560px;margin-inline:auto}
+.top{display:flex;justify-content:space-between;align-items:center}
+.ic{width:42px;height:42px;border-radius:50%;border:1px solid var(--bd);background:var(--card);color:var(--fg);font-size:19px;cursor:pointer}
+.hd{text-align:center;margin:-4px 0 14px}
+h1{font-size:30px;margin:0;background:linear-gradient(90deg,#e53935,#fb8c00,#7cb342,#039be5,#8e24aa);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.teacher{display:block;width:fit-content;margin:8px auto 6px;padding:6px 18px;border-radius:999px;background:var(--card);border:1px solid var(--bd);color:var(--acc);font-weight:800;font-size:17px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+p.sub{margin:0;color:var(--mut);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.c{perspective:600px;aspect-ratio:1;border:0;background:none;padding:0;cursor:pointer;font-family:inherit;transition:transform .15s;animation:pop .5s both;animation-delay:calc(var(--i)*45ms)}
+@keyframes pop{from{opacity:0;transform:scale(.6) rotate(-6deg)}to{opacity:1;transform:none}}
+.c:active{transform:scale(.95)}
+@media (hover:hover){.c:hover{transform:translateY(-3px)}}
+.in{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.3,1.3,.5,1);transform-style:preserve-3d}
+.c.on .in{transform:rotateY(180deg)}
+.f,.b{position:absolute;inset:0;border-radius:20px;backface-visibility:hidden;display:flex;align-items:center;justify-content:center}
+.f{background:linear-gradient(145deg,rgba(255,255,255,.28),transparent 55%),var(--col);box-shadow:0 4px 0 rgba(0,0,0,.2),0 8px 16px rgba(0,0,0,.1)}
+.b{transform:rotateY(180deg);background:var(--card);border:3px solid var(--col);font-size:24px;font-weight:800;color:var(--fg);box-shadow:0 6px 16px rgba(0,0,0,.1)}
+.c.hl .in{animation:pulse .5s 3}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.cnt{text-align:center;color:var(--mut);margin-top:16px;font-size:15px;min-height:22px}
+.pr{height:8px;border-radius:99px;background:var(--bd);margin-top:8px;overflow:hidden}
+.pr i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e53935,#fb8c00,#7cb342,#039be5,#8e24aa);transition:width .4s}
+.bar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.bar button{padding:13px 8px;border-radius:14px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font:800 16px 'Tajawal',system-ui,sans-serif;cursor:pointer;transition:transform .12s}
+.bar button:active{transform:scale(.96)}
+.bar .pk{grid-column:1/-1;background:var(--acc);color:#fff;border:0;font-size:18px;padding:15px}
+:root:not([data-theme]) .bar .pk{color:#fff}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:20;padding:24px;padding-top:calc(24px + env(safe-area-inset-top,0px))}
+#ov.s{display:flex}
+#ov div{background:var(--card);border:6px solid var(--col);border-radius:28px;padding:38px 46px;text-align:center;animation:zoom .4s cubic-bezier(.3,1.5,.5,1)}
+@keyframes zoom{from{transform:scale(.4);opacity:0}}
+#ov small{display:block;color:var(--mut);font-size:15px}
+#ov b{font-size:46px;color:var(--fg)}
+#cf{position:fixed;inset:0;pointer-events:none;z-index:30;width:100%;height:100%}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="top"><button class="ic" id="th" aria-label="الوضع">🌓</button><button class="ic" id="sd" aria-label="الصوت">🔊</button></div>
+<div class="hd">
+<h1>🎨 تسميع بالألوان</h1>
+<span class="teacher">أ. ندى باخميس</span>
+<p class="sub">اختاري لونًا لتعرفي الاسم الذي خلفه</p>
+</div>
+<div class="grid" id="g"></div>
+<div class="cnt" id="n"></div>
+<div class="pr"><i id="p"></i></div>
+<div class="bar">
+<button class="pk" id="pk">🎯 اسحبي اسمًا عشوائيًا</button>
+<button id="sh">🔀 خلط الألوان</button>
+<button id="rs">↺ إخفاء الكل</button>
+<button id="all" style="grid-column:1/-1">👁 إظهار الكل</button>
+</div>
+<div id="ov"><div><small>الاسم المختار</small><b id="nm"></b></div></div>
+<canvas id="cf"></canvas>
+<script>
+const names=["أمينة","أسماء","إيمان","أماني","دينا","رندة","سارة","سلوى","سمية","سيولة","شهد","نورة"];
+const cols=["#e53935","#fb8c00","#fdd835","#7cb342","#00897b","#039be5","#3949ab","#8e24aa","#d81b60","#6d4c41","#546e7a","#26c6da"];
+const $=id=>document.getElementById(id),g=$('g'),R=document.documentElement;
+let snd=true,done=false;
+try{snd=localStorage.getItem('snd')!=='0';const t=localStorage.getItem('th');if(t)R.dataset.theme=t}catch(e){}
+$('sd').textContent=snd?'🔊':'🔇';
+let ac;function beep(f){if(!snd)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),v=ac.createGain();o.frequency.value=f;v.gain.value=.08;o.connect(v);v.connect(ac.destination);o.start();v.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.2);o.stop(ac.currentTime+.2)}catch(e){}}
+$('sd').onclick=()=>{snd=!snd;$('sd').textContent=snd?'🔊':'🔇';try{localStorage.setItem('snd',snd?'1':'0')}catch(e){}beep(600)};
+$('th').onclick=()=>{const d=R.dataset.theme?R.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;R.dataset.theme=d?'light':'dark';try{localStorage.setItem('th',R.dataset.theme)}catch(e){}};
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function build(){
+  const m=shuffle(names);g.innerHTML='';done=false;
+  cols.forEach((c,i)=>{
+    const b=document.createElement('button');b.className='c';b.style.setProperty('--col',c);b.style.setProperty('--i',i);
+    b.setAttribute('aria-label','بطاقة رقم '+(i+1));
+    b.innerHTML='<div class="in"><div class="f"></div><div class="b">'+m[i]+'</div></div>';
+    b.dataset.name=m[i];
+    b.onclick=()=>{b.classList.toggle('on');beep(b.classList.contains('on')?660:440);count()};
+    g.appendChild(b);
+  });count();
+}
+function count(){
+  const k=g.querySelectorAll('.on').length,t=names.length;
+  $('n').textContent=k===t?'ما شاء الله! ظهرت كل الأسماء 🎉':'ظهر '+k+' من '+t;
+  $('p').style.width=(k/t*100)+'%';
+  if(k===t&&!done){done=true;boom()}else if(k<t)done=false;
+}
+$('sh').onclick=()=>{beep(520);build()};
+$('rs').onclick=()=>{g.querySelectorAll('.on').forEach(e=>e.classList.remove('on'));count()};
+$('all').onclick=()=>{g.querySelectorAll('.c').forEach(e=>e.classList.add('on'));beep(740);count()};
+$('pk').onclick=()=>{
+  const h=[...g.querySelectorAll('.c:not(.on)')];
+  if(!h.length){$('n').textContent='كل الأسماء ظاهرة، اضغطي «إخفاء الكل» للبدء من جديد';return}
+  const c=h[Math.floor(Math.random()*h.length)];
+  c.classList.add('hl');beep(500);
+  setTimeout(()=>{c.classList.remove('hl');c.classList.add('on');count();beep(800);
+    $('nm').textContent=c.dataset.name;$('ov').firstElementChild.style.setProperty('--col',c.style.getPropertyValue('--col'));$('ov').classList.add('s')},1200);
+};
+$('ov').onclick=()=>$('ov').classList.remove('s');
+function boom(){
+  const cv=$('cf'),x=cv.getContext('2d');cv.width=innerWidth;cv.height=innerHeight;
+  const P=Array.from({length:110},()=>({x:innerWidth/2,y:innerHeight*.6,vx:(Math.random()-.5)*14,vy:-Math.random()*15-4,s:5+Math.random()*6,c:cols[Math.floor(Math.random()*cols.length)],r:Math.random()*6}));
+  let f=0;(function a(){x.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.r+=.2;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);x.restore()});if(++f<110)requestAnimationFrame(a);else x.clearRect(0,0,cv.width,cv.height)})();
+  [523,659,784,1047].forEach((n,i)=>setTimeout(()=>beep(n),i*130));
+}
+build();
+</script>
+</body>
+</html>
